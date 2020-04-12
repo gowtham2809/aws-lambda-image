@@ -6,7 +6,7 @@
     "resizes": [
         {
             "size": 600,
-            "directory": "./thumbnail",
+            "directory": "thumbnail",
             "format": "jpg",
             "orientation": true
         }
