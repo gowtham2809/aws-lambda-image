@@ -1,0 +1,14 @@
+{
+    "bucket": "pulsedin-dev-storage",
+    "acl": "public-read",
+    "keepExtension": true,
+    "jpegOptimizer": "mozjpeg",
+    "resizes": [
+        {
+            "size": 600,
+            "directory": "./thumbnail",
+            "format": "jpg",
+            "orientation": true.
+        }
+    ]
+}
