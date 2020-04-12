@@ -1,6 +1,6 @@
 "use strict";
 
-const ImageData = require("./ImageData");
+const VideoData = require("./VideoData");
 const aws       = require("aws-sdk");
 
 class S3FileSystem {
@@ -21,12 +21,12 @@ class S3FileSystem {
             console.log("Downloading: " + key);
 
             this.client.getObject({ Bucket: bucket, Key: key }).promise().then((data) => {
-                if ( "img-processed" in data.Metadata ) {
+                if ( "vid-processed" in data.Metadata ) {
                     reject("Object was already processed.");
                 } else if ( data.ContentLength <= 0 ) {
                     reject("Empty file or directory.");
                 } else {
-                    resolve(new ImageData(
+                    resolve(new VideoData(
                         key,
                         bucket,
                         data.Body,
@@ -43,18 +43,18 @@ class S3FileSystem {
     /**
      * Put object data to S3 bucket
      *
-     * @param ImageData image
+     * @param VideoData video
      * @return Promise
      */
-    putObject(image, options) {
+    putObject(video, options) {
         const params = {
-            Bucket:       image.bucketName,
-            Key:          image.fileName,
-            Body:         image.data,
-            Metadata:     Object.assign({}, image.headers.Metadata, { "img-processed": "true" }),
-            ContentType:  image.headers.ContentType,
-            CacheControl: (options.cacheControl !== undefined) ? options.cacheControl : image.headers.CacheControl,
-            ACL:          image.acl || "private"
+            Bucket:       video.bucketName,
+            Key:          video.fileName,
+            Body:         video.data,
+            Metadata:     Object.assign({}, video.headers.Metadata, { "vid-processed": "true" }),
+            ContentType:  video.headers.ContentType,
+            CacheControl: (options.cacheControl !== undefined) ? options.cacheControl : video.headers.CacheControl,
+            ACL:          video.acl || "private"
         };
 
         console.log("Uploading to: " + params.Key + " (" + params.Body.length + " bytes)");
@@ -65,19 +65,21 @@ class S3FileSystem {
     /**
      * Delete object data from S3 bucket
      *
-     * @param ImageData image
+     * @param VideoData video
      * @return Promise
      */
-    deleteObject(image) {
+    deleteObject(video) {
         const params = {
-            Bucket: image.bucketName,
-            Key:    image.fileName
+            Bucket: video.bucketName,
+            Key:    video.fileName
         };
 
         console.log("Delete original object: " + params.Key);
 
         return this.client.deleteObject(params).promise();
     }
+
+
 }
 
 module.exports = S3FileSystem;
