@@ -6,7 +6,7 @@
         "profile": "pulsedin",
         "region": "us-east-2",
         "memory": "1280",
-        "timeout": "5",
+        "timeout": "180",
         "name": "dev-aws-lambda-video-thumbnail",
         "runtime": "nodejs10.x"
     },
