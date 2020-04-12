@@ -8,7 +8,7 @@
             "size": 600,
             "directory": "./thumbnail",
             "format": "jpg",
-            "orientation": true.
+            "orientation": true
         }
     ]
 }
