@@ -1,5 +1,5 @@
 {
-    "bucket": "pulsedin-dev-storage",
+    "bucket": "onco-power-dev-s3",
     "acl": "public-read",
     "thumbnail": {
         "size": 600,
