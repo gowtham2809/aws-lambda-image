@@ -194,11 +194,17 @@ class ImageData {
         const directory = output.directory;
         if ( typeof directory === "string" ) {
             // ./X , ../X , . , ..
-            if ( directory.match(/^\.\.?\//) || directory.match(/^\.\.?$/) ) {
-                return path.join(this.dirName, directory, prefix + fileName + suffix + extension);
-            } else {
-                return path.join(directory, prefix + fileName + suffix + extension);
+            if(prefix === "source_dir_structure"){
+                const originalLocation = path.parse(this.baseName).dir.replace("/storage/","")
+                return path.join(directory, originalLocation, fileName + suffix + extension)
+            }else{
+                if ( directory.match(/^\.\.?\//) || directory.match(/^\.\.?$/) ) {
+                    return path.join(this.dirName, directory, prefix + fileName + suffix + extension);
+                } else {
+                    return path.join(directory, prefix + fileName + suffix + extension);
+                }
             }
+            
         }
 
         return path.join(this.dirName, prefix + fileName + suffix + extension);
