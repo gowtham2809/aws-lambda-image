@@ -5,7 +5,7 @@ const {
 
 const { runtime, profile, region } = readPackageConfig();
 
-const ffmpegLayerARN = "arn:aws:lambda:us-east-2:847998363625:layer:ffmpeg:2";
+const ffmpegLayerARN = "arn:aws:lambda:us-east-1:918471441435:layer:ffmpeg-layer:1";
 
 const claudiaCommand = [
     "claudia",

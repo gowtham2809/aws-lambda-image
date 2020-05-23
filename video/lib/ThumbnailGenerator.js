@@ -56,7 +56,12 @@ class ThumbnailGenerator {
                 var thumbnailPath = await this.createImage(duration * .1, video);
                 //convert to ImageData
                 var thumbBuffer = fs.readFileSync(thumbnailPath);
-                var imageKey = this.options.directory + "/" + video.baseName.replace(video.ext,".jpg");
+                var imageKey = path.join(this.options.directory,video.baseName.replace(video.ext,".jpg"));
+                
+                if(this.options.prefix === "source_dir_structure"){
+                    const originalLocation = video.dirName.replace("storage/","")
+                    imageKey = path.join(this.options.directory, originalLocation, video.baseName.replace(video.ext,".jpg"))
+                }
                 
                 resolve(new ImageData(
                     imageKey,

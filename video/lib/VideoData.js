@@ -152,50 +152,6 @@ class VideoData {
       return this._ext;
     }
 
-    /**
-     * Combines dirName, filename, and directory (from options).
-     *
-     * @public
-     * @param String directory (from options)
-     * @param String filePrefix (from options)
-     * @param String fileSuffix (from options)
-     * @param Boolean keepExtension (from options)
-     * @return String
-     */
-    combineWithDirectory(output) {
-        const prefix = output.prefix || "";
-        const suffix = output.suffix || "";
-        const fileName = path.parse(this.baseName).name;
-        const extension = ( output.keepExtension )
-          ? this.ext
-          : "." + this.type.ext;
-
-        const template = output.template;
-        if ( typeof template === "object" && template.pattern ) {
-            const inputTemplate = PathTemplate.parse(template.pattern);
-            const outputTemplate = PathTemplate.parse(template.output || "");
-
-            const match = PathTemplate.match(inputTemplate, this.dirName);
-            if ( match ) {
-                const outputPath = PathTemplate.format(outputTemplate, match);
-                return path.join(outputPath, prefix + fileName + suffix + extension);
-            } else {
-                console.log( "Directory " + this.dirName + " didn't match template " + template.pattern );
-            }
-        }
-
-        const directory = output.directory;
-        if ( typeof directory === "string" ) {
-            // ./X , ../X , . , ..
-            if ( directory.match(/^\.\.?\//) || directory.match(/^\.\.?$/) ) {
-                return path.join(this.dirName, directory, prefix + fileName + suffix + extension);
-            } else {
-                return path.join(directory, prefix + fileName + suffix + extension);
-            }
-        }
-
-        return path.join(this.dirName, prefix + fileName + suffix + extension);
-    }
 }
 
 module.exports = VideoData;

@@ -4,6 +4,7 @@
     "thumbnail": {
         "size": 600,
         "directory": "thumbnail",
+        "prefix": "source_dir_structure",
         "orientation": true
     }
 }
