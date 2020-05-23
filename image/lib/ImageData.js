@@ -195,8 +195,9 @@ class ImageData {
         if ( typeof directory === "string" ) {
             // ./X , ../X , . , ..
             if(prefix === "source_dir_structure"){
-                const originalLocation = path.parse(this.baseName).dir.replace("/storage/","")
-                return path.join(directory, originalLocation, fileName + suffix + extension)
+                const originalLocation = path.parse(this._fileName).dir.replace("storage/","")
+                const newPath = path.join(directory, originalLocation, fileName + suffix + extension)
+                return newPath
             }else{
                 if ( directory.match(/^\.\.?\//) || directory.match(/^\.\.?$/) ) {
                     return path.join(this.dirName, directory, prefix + fileName + suffix + extension);
