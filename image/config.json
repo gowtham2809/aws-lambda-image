@@ -2,12 +2,13 @@
     "bucket": "onco-power-dev-s3",
     "acl": "public-read",
     "keepExtension": true,
+    "jpegOptimizer": "mozjpeg",
     "resizes": [
         {
             "size": 600,
             "directory": "thumbnail",
             "prefix": "source_dir_structure",
-            "format": "png",
+            "format": "jpg",
             "orientation": true
         }
     ]
