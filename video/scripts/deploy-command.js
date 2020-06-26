@@ -13,7 +13,7 @@ const {
     role
 } = readPackageConfig();
 
-const ffmpegLayerARN = "arn:aws:lambda:us-east-1:918471441435:layer:ffmpeg-layer:1";
+const ffmpegLayerARN = "arn:aws:lambda:us-east-1:079697997190:layer:ffmpeg-layer:1";
 
 const claudiaCommand = [
     "claudia",
