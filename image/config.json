@@ -1,5 +1,5 @@
 {
-    "bucket": "onco-power-dev-s3",
+    "bucket": "onco-power-storage",
     "acl": "public-read",
     "keepExtension": true,
     "jpegOptimizer": "mozjpeg",
