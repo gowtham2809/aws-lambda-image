@@ -7,7 +7,7 @@
         "region": "us-east-2",
         "memory": "1280",
         "timeout": "5",
-        "name": "dev-aws-lambda-image-resize",
+        "name": "prod-aws-lambda-image-resize",
         "runtime": "nodejs10.x"
     },
     "scripts": {

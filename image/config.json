@@ -1,5 +1,5 @@
 {
-    "bucket": "pulsedin-dev-storage",
+    "bucket": "pulsedin-prod-storage",
     "acl": "public-read",
     "keepExtension": true,
     "jpegOptimizer": "mozjpeg",

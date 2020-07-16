@@ -7,7 +7,7 @@
         "region": "us-east-2",
         "memory": "1280",
         "timeout": "180",
-        "name": "dev-aws-lambda-video-thumbnail",
+        "name": "prod-aws-lambda-video-thumbnail",
         "runtime": "nodejs10.x"
     },
     "scripts": {

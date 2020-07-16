@@ -4,7 +4,7 @@
         {
             "Effect": "Allow",
             "Action": ["s3:*"],
-            "Resource": ["arn:aws:s3:::pulsedin-dev-storage/*"]
+            "Resource": ["arn:aws:s3:::pulsedin-prod-storage/*"]
         }
     ]
 }
