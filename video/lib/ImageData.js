@@ -3,7 +3,7 @@
 const path         = require("path");
 const imageType    = require("image-type");
 const PathTemplate = require("path-template");
-
+const sizeOf = require('buffer-image-size');
 class ImageType {
 
     /**
@@ -159,6 +159,10 @@ class ImageData {
       return this._ext;
     }
 
+    get dimensions(){
+        return sizeOf(this._data);
+    }
+
     /**
      * Combines dirName, filename, and directory (from options).
      *
@@ -173,6 +177,8 @@ class ImageData {
         const prefix = output.prefix || "";
         const suffix = output.suffix || "";
         const fileName = path.parse(this.baseName).name;
+        const dimen = this.dimensions
+        const dimenStr = "--"+dimen.width+"--"+dimen.height;
         const extension = ( output.keepExtension )
           ? this.ext
           : "." + this.type.ext;
@@ -185,7 +191,7 @@ class ImageData {
             const match = PathTemplate.match(inputTemplate, this.dirName);
             if ( match ) {
                 const outputPath = PathTemplate.format(outputTemplate, match);
-                return path.join(outputPath, prefix + fileName + suffix + extension);
+                return path.join(outputPath, prefix + fileName + suffix +dimenStr+ extension);
             } else {
                 console.log( "Directory " + this.dirName + " didn't match template " + template.pattern );
             }
@@ -195,13 +201,13 @@ class ImageData {
         if ( typeof directory === "string" ) {
             // ./X , ../X , . , ..
             if ( directory.match(/^\.\.?\//) || directory.match(/^\.\.?$/) ) {
-                return path.join(this.dirName, directory, prefix + fileName + suffix + extension);
+                return path.join(this.dirName, directory, prefix + fileName + suffix +dimenStr+ extension);
             } else {
-                return path.join(directory, prefix + fileName + suffix + extension);
+                return path.join(directory, prefix + fileName + suffix +dimenStr+ extension);
             }
         }
 
-        return path.join(this.dirName, prefix + fileName + suffix + extension);
+        return path.join(this.dirName, prefix + fileName + suffix +dimenStr+ extension);
     }
 }
 
