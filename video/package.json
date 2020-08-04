@@ -3,7 +3,7 @@
     "version": "1.1.0",
     "description": "An AWS Lambda Function to generate Video Thumbnail automatically",
     "config": {
-        "profile": "tartlabs",
+        "profile": "oncopower-dev",
         "region": "us-east-1",
         "memory": "1280",
         "timeout": "180",
